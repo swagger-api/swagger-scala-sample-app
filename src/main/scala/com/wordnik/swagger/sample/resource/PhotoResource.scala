@@ -1,4 +1,4 @@
-package com.wordnik.swagger.sandbox.resource
+package com.wordnik.swagger.sample.resource
 
 import javax.ws.rs._
 import core.Response
