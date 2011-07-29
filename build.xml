@@ -8,7 +8,7 @@
     <property environment="env" />
     <property name="module" value="${ant.project.name}" />
     <property name="swagger_ui_path" value="../swagger-ui"/>
-
+    
 	<condition property="scala.home" value="${env.SCALA_HOME}">
 		<isset property="env.SCALA_HOME" />
 	</condition>
@@ -250,5 +250,4 @@
 	<target name="dependency.tree" description="builds a dependency diagram">
  		<ivy:report conf="build" graph="true" todir="." outputpattern="[artifact]-[revision].[ext]" />
 	</target>
-
 </project>

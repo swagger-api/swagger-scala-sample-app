@@ -1,0 +1,7 @@
+How to run the sample app:
+
+1. Get latest version of this project using git clone git@github.com:wordnik/swagger-sample-app.git
+
+2. Set swagger_ui_path in build.xml. If swagger-ui and swagger-sample-app are at same level of directory structure, we need not set this value. 
+
+3. 
