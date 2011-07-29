@@ -195,7 +195,7 @@
 			<fileset dir="conf/web"/>
 		</copy>
 
-        <copy todir="dist/webapps/swagger-sample-app/WEB-INF">
+        <copy todir="dist/webapps/swagger-sample-app">
             <fileset dir="${swagger_ui_path}/src/main/html"/>
         </copy>
         
