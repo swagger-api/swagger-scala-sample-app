@@ -2,11 +2,16 @@
 <project name="swagger-sample-app" xmlns:ivy="antlib:org.apache.ivy.ant" default="build.all" basedir=".">
 	<property environment="env" />
 	<property name="version.identifier" value="1.0" />
-    	<property name="artifact.ext" value="jar" />
-    	<property name="organization" value="wordnik" />
-    	<property name="rule.path" value="dist/data" />
-    	<property environment="env" />
-    	<property name="module" value="${ant.project.name}" />
+	<property name="artifact.ext" value="jar" />
+	<property name="organization" value="wordnik" />
+	<property name="rule.path" value="dist/data" />
+	<property environment="env" />
+	<property name="module" value="${ant.project.name}" />
+	
+	<!-- default directories -->
+	<mkdir dir="build"/>
+	<mkdir dir="lib"/>
+	<mkdir dir="lib/ext"/>
 
 	<condition property="scala.home" value="${env.SCALA_HOME}">
 		<isset property="env.SCALA_HOME" />
@@ -244,5 +249,4 @@
 	<target name="dependency.tree" description="builds a dependency diagram">
  		<ivy:report conf="build" graph="true" todir="." outputpattern="[artifact]-[revision].[ext]" />
 	</target>
-
 </project>
