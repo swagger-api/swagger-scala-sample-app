@@ -198,7 +198,10 @@
             <fileset dir="${swagger_ui_path}/src/main/html"/>
         </copy>
         
-
+        <replace file="dist/webapps/swagger-sample-app/javascript/swagger-ui.js">
+          <replacetoken><![CDATA[//    this.baseUrl = "http://swagr.api.wordnik.com/v4/list.json";]]></replacetoken>
+          <replacevalue><![CDATA[this.baseUrl = "http://localhost:8002/swagger-sample-app/api/resources.json";]]></replacevalue>
+        </replace>
 		<!-- copy bin files -->
 		<copy todir="dist/bin">
 			<fileset dir="bin"/>
