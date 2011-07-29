@@ -222,8 +222,10 @@
 
 		<!-- clean up old dists -->
 		<delete quiet="true">
-			<fileset dir=".">
+			<fileset dir="build">
 				<include name="swagger-sample-app-*.zip"/>
+                <include name="swagger-sample-app-*.pom"/>
+                <include name="swagger-sample-app-*.jar"/>
 			</fileset>
 		</delete>
 
@@ -235,6 +237,11 @@
 				<include name="swagger-*.zip"/>
 			</fileset>
 		</copy>
+		<delete quiet="true">
+			<fileset dir=".">
+				<include name="swagger-sample-app-*.zip"/>
+			</fileset>
+		</delete>
 	</target>
 
     <target name="deploy" depends="dist">
