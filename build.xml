@@ -2,11 +2,12 @@
 <project name="swagger-sample-app" xmlns:ivy="antlib:org.apache.ivy.ant" default="build.all" basedir=".">
 	<property environment="env" />
 	<property name="version.identifier" value="1.0" />
-    	<property name="artifact.ext" value="jar" />
-    	<property name="organization" value="wordnik" />
-    	<property name="rule.path" value="dist/data" />
-    	<property environment="env" />
-    	<property name="module" value="${ant.project.name}" />
+    <property name="artifact.ext" value="jar" />
+    <property name="organization" value="wordnik" />
+    <property name="rule.path" value="dist/data" />
+    <property environment="env" />
+    <property name="module" value="${ant.project.name}" />
+    <property name="swagger_ui_path" value="../swagger-ui"/>
 
 	<condition property="scala.home" value="${env.SCALA_HOME}">
 		<isset property="env.SCALA_HOME" />
@@ -193,6 +194,11 @@
 		<copy todir="dist/webapps/swagger-sample-app/WEB-INF">
 			<fileset dir="conf/web"/>
 		</copy>
+
+        <copy todir="dist/webapps/swagger-sample-app/WEB-INF">
+            <fileset dir="${swagger_ui_path}/src/main/html"/>
+        </copy>
+        
 
 		<!-- copy bin files -->
 		<copy todir="dist/bin">
