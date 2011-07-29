@@ -186,7 +186,6 @@
 		<mkdir dir="dist/webapps/swagger-sample-app/WEB-INF"/>
 		<mkdir dir="dist/webapps/swagger-sample-app/WEB-INF/classes"/>
 		<mkdir dir="dist/webapps/swagger-sample-app/WEB-INF/lib"/>
-		<mkdir dir="dist/webapps/swagger-sample-app/WEB-INF/flex"/>
 
 		<mkdir dir="dist/conf"/>
 		<copy todir="dist/conf" file="conf/log4j.properties"/>
