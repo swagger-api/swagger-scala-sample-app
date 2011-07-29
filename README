@@ -1,0 +1,4 @@
+How to run the sample app:
+
+1. Set swagger_ui_path in build.xml. If swagger-ui and swagger-sample-app are at same level of directory structure, we need not set this value. 
+
