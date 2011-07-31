@@ -1,7 +1,12 @@
 package com.wordnik.swagger.sample.resource
 
-import javax.ws.rs.{Produces, Path}
-import com.wordnik.swagger.core.{Help, Api}
+import com.wordnik.swagger.core.ApiOperation._
+import com.wordnik.swagger.core.ApiError._
+import com.wordnik.swagger.core._
+import com.wordnik.swagger.core.ApiParam._
+import javax.ws.rs.core.Response
+import javax.ws.rs._
+import com.wordnik.swagger.sample.model.User
 
 /**
  * Sample user service. 
@@ -11,20 +16,57 @@ import com.wordnik.swagger.core.{Help, Api}
  */
 trait UserResource {
 
-  //unsecure
-  //create user
+  @POST
+  @ApiOperation(value = "Create user", notes = "This can only be done the logged in user")
+  def createUser(
+      @ApiParam(value="Created user object",required=true)user: User) = {
+      Response.ok.entity("").build
+  }
 
-  //secure
-  //update user
+  @PUT
+  @Path("/{username}")
+  @ApiOperation(value = "Updated user", notes = "This can only be done the logged in user")
+  @ApiErrors(Array(
+    new ApiError(code = 400, reason = "Invalid username supplied"),
+    new ApiError(code = 404, reason = "User not found")))
+  def updateUser(
+      @ApiParam(value="name that need to be deleted",required=true)@PathParam("username") username: String,
+      @ApiParam(value="Updated user object",required=true)user: User) = {
+      Response.ok.entity("").build
+  }
 
-  //secure
-  //delete user
+  @DELETE
+  @Path("/{username}")
+  @ApiOperation(value = "Delete user", notes = "This can only be done the logged in user")
+  @ApiErrors(Array(
+    new ApiError(code = 400, reason = "Invalid username supplied"),
+    new ApiError(code = 404, reason = "User not found")))
+  def deleteUser(
+      @ApiParam(value="name that need to be deleted",required=true)@PathParam("username") username: String) = {
+      Response.ok.entity("").build
+  }
 
-  //unsecure
-  //get user
+  @GET
+  @Path("/{username}")
+  @ApiOperation(value = "Get user by user name", responseClass = "com.wordnik.swagger.sample.model.User")
+  @ApiErrors(Array(
+    new ApiError(code = 400, reason = "Invalid username supplied"),
+    new ApiError(code = 404, reason = "User not found")))
+  def getUserByName(
+      @ApiParam(value="name that need to be fetched",required=true)@PathParam("username") username: String) = {
+      Response.ok.entity("").build
+  }
 
-  //unsecure
-  //login user
+  @GET
+  @Path("/login")
+  @ApiOperation(value = "Login user into the system", responseClass = "String")
+  @ApiErrors(Array(
+    new ApiError(code = 400, reason = "Invalid username and password combination")))
+  def loginUser(
+      @ApiParam(value="user name for login",required=true)@QueryParam("username") username: String,
+       @ApiParam(value="password for login in clear text",required=true)@QueryParam("password") password: String) = {
+      Response.ok.entity("").build
+  }
 }
 
 

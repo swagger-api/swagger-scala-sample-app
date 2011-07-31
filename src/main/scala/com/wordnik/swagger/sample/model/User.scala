@@ -16,7 +16,9 @@ import com.wordnik.swagger.core.ApiProperty._
 class User {
 
   private var id:Long = 0
-  
+
+  private var username:String = _
+
   private var firstName:String = _
 
   private var lastName:String = _
@@ -47,6 +49,16 @@ class User {
   def setFirstName(firstName:String):Unit = {
     this.firstName = firstName
   }
+
+  @XmlElement(name="username")
+  def getUsername():String = {
+    username
+  }
+
+  def setUsername(username:String):Unit = {
+    this.username = username
+  }
+
 
   @XmlElement(name="lastName")
   def getLastName():String = {
