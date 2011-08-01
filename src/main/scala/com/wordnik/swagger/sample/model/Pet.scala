@@ -13,10 +13,10 @@ import com.wordnik.swagger.core.ApiProperty._
  * Time: 5:15 PM
  */
 @XmlRootElement(name = "pet")
-class Pet {
+class Pet() {
 
   private var id:Long = 0
-  
+
   private var category:Category = null
 
   private var name:String = null

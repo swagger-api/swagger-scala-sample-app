@@ -7,6 +7,9 @@ import com.wordnik.swagger.core.ApiParam._
 import javax.ws.rs.core.Response
 import javax.ws.rs._
 import com.wordnik.swagger.sample.model.User
+import com.wordnik.swagger.sample.data.UserData
+import util.RestResourceUtil
+import com.sun.jersey.spi.resource.Singleton
 
 /**
  * Sample user service. 
@@ -14,12 +17,14 @@ import com.wordnik.swagger.sample.model.User
  * Date: 7/29/11
  * Time: 5:23 PM
  */
-trait UserResource {
+trait UserResource extends RestResourceUtil {
+  var userData = new UserData
 
   @POST
   @ApiOperation(value = "Create user", notes = "This can only be done the logged in user")
   def createUser(
       @ApiParam(value="Created user object",required=true)user: User) = {
+      userData.addUser(user)
       Response.ok.entity("").build
   }
 
@@ -32,6 +37,7 @@ trait UserResource {
   def updateUser(
       @ApiParam(value="name that need to be deleted",required=true)@PathParam("username") username: String,
       @ApiParam(value="Updated user object",required=true)user: User) = {
+      userData.addUser(user)
       Response.ok.entity("").build
   }
 
@@ -43,6 +49,7 @@ trait UserResource {
     new ApiError(code = 404, reason = "User not found")))
   def deleteUser(
       @ApiParam(value="name that need to be deleted",required=true)@PathParam("username") username: String) = {
+      userData.removeUser(username)
       Response.ok.entity("").build
   }
 
@@ -54,7 +61,8 @@ trait UserResource {
     new ApiError(code = 404, reason = "User not found")))
   def getUserByName(
       @ApiParam(value="name that need to be fetched",required=true)@PathParam("username") username: String) = {
-      Response.ok.entity("").build
+      var user = userData.findUserByName(username)
+      Response.ok.entity(user).build
   }
 
   @GET
@@ -79,12 +87,14 @@ trait UserResource {
 
 
 @Path("/user.json")
+@Singleton
 @Api("/user")
 @Produces(Array("application/json"))
 class UserResourceJSON extends Help
   with UserResource
 
 @Path("/user.xml")
+@Singleton
 @Api("/user")
 @Produces(Array("application/xml"))
 class UserResourceXML extends Help

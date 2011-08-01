@@ -7,7 +7,6 @@ import java.util.ArrayList
 import java.net.URLDecoder
 import scala.collection.JavaConversions._
 import com.wordnik.swagger.core.{Api, ApiAuthorizationFilter}
-import com.wordnik.swagger.sample.util.Secure
 import javax.ws.rs.Path
 import com.sun.org.apache.xpath.internal.operations.Variable
 import org.eclipse.jdt.internal.compiler.codegen.MethodNameAndTypeCache
@@ -20,7 +19,10 @@ import org.eclipse.jdt.internal.compiler.codegen.MethodNameAndTypeCache
  *
  * If the resource or method is secure then it can only be viewed by users who login into the system.
  *
- * Login infomration is derived from thread local.
+ * Login information is derived from thread local.
+ *
+ * Note: Objective of this class is not to provide fully functional implementation of authorization filter. This is
+ * only a sample demonstration how API authorization filter works. 
  *
  */
 class ApiAuthorizationFilterImpl extends ApiAuthorizationFilter {
@@ -30,8 +32,9 @@ class ApiAuthorizationFilterImpl extends ApiAuthorizationFilter {
   var classSecurityAnotations:Map[String, Boolean] =  Map[String, Boolean]()
 
   def authorize(apiPath: String, method:String, headers: HttpHeaders , uriInfo: UriInfo ): Boolean = {
-     var mName = method.toUpperCase;
-     if (isPathSecure(mName+":"+apiPath, false)){
+     val context = ThreadContextLocator.getThreadContext
+     val mName = method.toUpperCase;
+     if (isPathSecure(mName+":"+apiPath, false) && (null == context || null == context.getUsername())){
         false
      }else {
         true
@@ -39,7 +42,8 @@ class ApiAuthorizationFilterImpl extends ApiAuthorizationFilter {
   }
 
   def authorizeResource(apiPath: String, headers: HttpHeaders, uriInfo: UriInfo): Boolean = {
-    if (isPathSecure(apiPath, true)){
+    val context = ThreadContextLocator.getThreadContext
+    if (isPathSecure(apiPath, true) && (null == context || null == context.getUsername())){
        false
     }else {
        true

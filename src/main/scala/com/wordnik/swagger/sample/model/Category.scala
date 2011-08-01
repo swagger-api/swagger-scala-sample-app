@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.{XmlRootElement, XmlElement}
  * Time: 5:21 PM
  */
 @XmlRootElement(name = "category")
-class Category {
+class Category() {
 
   private var id:Long = 0
 
