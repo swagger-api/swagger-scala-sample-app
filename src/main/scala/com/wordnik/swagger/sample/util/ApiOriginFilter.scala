@@ -1,4 +1,4 @@
-package com.wordnik.swagr.sandbox.util
+package com.wordnik.swagger.sample.util
 
 import java.io.IOException
 

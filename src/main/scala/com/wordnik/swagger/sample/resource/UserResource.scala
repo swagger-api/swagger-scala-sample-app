@@ -67,6 +67,14 @@ trait UserResource {
        @ApiParam(value="password for login in clear text",required=true)@QueryParam("password") password: String) = {
       Response.ok.entity("").build
   }
+
+  @GET
+  @Path("/logout")
+  @ApiOperation(value = "Logs out current logged in user session")
+  def logoutUser() = {
+      Response.ok.entity("").build
+  }
+
 }
 
 
