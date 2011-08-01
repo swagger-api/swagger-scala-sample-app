@@ -10,6 +10,7 @@ import com.wordnik.swagger.sample.model.User
 import com.wordnik.swagger.sample.data.UserData
 import util.RestResourceUtil
 import com.sun.jersey.spi.resource.Singleton
+import com.wordnik.swagger.sample.exception.NotFoundException
 
 /**
  * Sample user service. 
@@ -62,7 +63,11 @@ trait UserResource extends RestResourceUtil {
   def getUserByName(
       @ApiParam(value="name that need to be fetched",required=true)@PathParam("username") username: String) = {
       var user = userData.findUserByName(username)
-      Response.ok.entity(user).build
+      if(null != user){
+        Response.ok.entity(user).build
+      }else{
+        throw new NotFoundException(404, "User not found")
+      }
   }
 
   @GET
@@ -73,7 +78,7 @@ trait UserResource extends RestResourceUtil {
   def loginUser(
       @ApiParam(value="user name for login",required=true)@QueryParam("username") username: String,
        @ApiParam(value="password for login in clear text",required=true)@QueryParam("password") password: String) = {
-      Response.ok.entity("").build
+      Response.ok.entity("logged in user session:"+ System.currentTimeMillis()).build
   }
 
   @GET

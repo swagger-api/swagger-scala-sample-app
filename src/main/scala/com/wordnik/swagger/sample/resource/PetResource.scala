@@ -10,8 +10,9 @@ import org.junit.runner.manipulation.NoTestsRemainException
 import com.wordnik.swagger.sample.data.{PetData}
 import util.RestResourceUtil
 import java.lang.Exception
-import com.wordnik.swagger.sample.model.{ApiException, Pet}
+import com.wordnik.swagger.sample.model.{Pet}
 import com.sun.jersey.spi.resource.Singleton
+import com.wordnik.swagger.sample.exception.NotFoundException
 
 /**
  * User: ramesh
@@ -34,7 +35,7 @@ trait PetResource extends RestResourceUtil {
       if (null != pet){
         Response.ok.entity(pet).build
       }else{
-        throw new ApiException(404, "Pet not found")
+        throw new NotFoundException(404, "Pet not found")
       }
   }
 

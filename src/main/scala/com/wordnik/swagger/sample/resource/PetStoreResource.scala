@@ -7,6 +7,7 @@ import com.wordnik.swagger.sample.model.Order
 import com.wordnik.swagger.sample.data.StoreData
 import util.RestResourceUtil
 import com.sun.jersey.spi.resource.Singleton
+import com.wordnik.swagger.sample.exception.NotFoundException
 
 /**
  * User: ramesh
@@ -27,7 +28,11 @@ trait PetStoreResource extends RestResourceUtil {
   def getOrderById(
       @ApiParam(value="ID of pet that need to be fetched",required=true)@PathParam("orderId") orderId: String) = {
       var order = storeData.findOrderById(getLong(0,10000, 0, orderId))
-      Response.ok.entity(order).build
+      if (null != order){
+        Response.ok.entity(order).build
+      }else{
+        throw new NotFoundException(404, "Order not found")
+      }
   }
 
   @POST
