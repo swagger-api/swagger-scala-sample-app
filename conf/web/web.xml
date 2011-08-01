@@ -44,7 +44,7 @@
     </servlet-mapping>
     <filter>
         <filter-name>ApiOriginFilter</filter-name>
-        <filter-class>com.wordnik.swagr.sandbox.util.ApiOriginFilter</filter-class>
+        <filter-class>com.wordnik.swagger.sample.util.ApiOriginFilter</filter-class>
     </filter>
 
     <filter-mapping>
