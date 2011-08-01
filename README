@@ -6,8 +6,12 @@ How to run the sample app:
         git clone git@github.com:wordnik/swagger-code-gen.git
         git clone git@github.com:wordnik/swagger-sample-app.git
 
-2. Set swagger_ui_path in build.xml. If swagger-ui and swagger-sample-app are at same level of directory structure, we need not set this value. 
+2. run "ant deploy server.start"
 
-3. run "ant deploy server.start"
+3. Make sure to add package name "com.wordnik.swagger.core" to web.xml servlet init parameter "com.sun.jersey.config.property.packages"
 
-4. Access the url http://localhost:8002/swagger-sample-app/index.html
+4. Go to swagger-ui project and opn the index.html
+
+5. Enter URL for the resource as "http://localhost:8002/api" and api-key as "sample-app-un-secure-key" for accessing unsecured API and "sample-app-secure-key" for accessing secure APIs
+
+
