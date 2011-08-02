@@ -34,17 +34,24 @@ class ApiAuthorizationFilterImpl extends ApiAuthorizationFilter {
   def authorize(apiPath: String, method:String, headers: HttpHeaders , uriInfo: UriInfo ): Boolean = {
      var apiKey = uriInfo.getQueryParameters.getFirst("api_key")
      val mName = method.toUpperCase;
-     if (isPathSecure(mName+":"+apiPath, false) && (apiKey == unsecurekeyId)){
-        false
-     }else {
-        true
+     if (isPathSecure(mName+":"+apiPath, false)){
+       if (apiKey == securekeyId){
+        return true
+       }else{
+         return false
+       }
      }
+     true
   }
 
   def authorizeResource(apiPath: String, headers: HttpHeaders, uriInfo: UriInfo): Boolean = {
     var apiKey = uriInfo.getQueryParameters.getFirst("api_key")
-    if (isPathSecure(apiPath, true) && (apiKey == unsecurekeyId)){
-       false
+    if (isPathSecure(apiPath, true)){
+      if (apiKey == securekeyId){
+       return true
+      }else{
+        return false
+      }
     }else {
        true
     }
@@ -70,25 +77,25 @@ class ApiAuthorizationFilterImpl extends ApiAuthorizationFilter {
   private def initialize() = {
 
     //initialize classes
-    classSecurityAnotations += "/user" -> false
-    classSecurityAnotations += "/pet" -> false
-    classSecurityAnotations += "/store" -> true
+    classSecurityAnotations += "/user.{format}" -> false
+    classSecurityAnotations += "/pet.{format}" -> false
+    classSecurityAnotations += "/store.{format}" -> true
 
     //initialize method security
-    methodSecurityAnotations += "GET:/pet/{petId}" -> false
-    methodSecurityAnotations += "POST:/pet" -> true
-    methodSecurityAnotations += "PUT:/pet" -> true
-    methodSecurityAnotations += "GET:/pet/findByStatus" -> false
-    methodSecurityAnotations += "GET:/pet/findByTags" -> false
-    methodSecurityAnotations += "GET:/store/order/{orderId}" -> true
-    methodSecurityAnotations += "DELETE:/store/order/{orderId}" -> true
-    methodSecurityAnotations += "POST:/store/order" -> true
-    methodSecurityAnotations += "POST:/user" -> false
-    methodSecurityAnotations += "PUT:/user/{username}" -> true
-    methodSecurityAnotations += "DELETE:/user/{username}" -> true
-    methodSecurityAnotations += "GET:/user/{username}" -> false
-    methodSecurityAnotations += "GET:/user/login" -> false
-    methodSecurityAnotations += "GET:/user/logout" -> false
+    methodSecurityAnotations += "GET:/pet.{format}/{petId}" -> false
+    methodSecurityAnotations += "POST:/pet.{format}" -> true
+    methodSecurityAnotations += "PUT:/pet.{format}" -> true
+    methodSecurityAnotations += "GET:/pet.{format}/findByStatus" -> false
+    methodSecurityAnotations += "GET:/pet.{format}/findByTags" -> false
+    methodSecurityAnotations += "GET:/store.{format}/order/{orderId}" -> true
+    methodSecurityAnotations += "DELETE:/store.{format}/order/{orderId}" -> true
+    methodSecurityAnotations += "POST:/store.{format}/order" -> true
+    methodSecurityAnotations += "POST:/user.{format}" -> false
+    methodSecurityAnotations += "PUT:/user.{format}/{username}" -> true
+    methodSecurityAnotations += "DELETE:/user.{format}/{username}" -> true
+    methodSecurityAnotations += "GET:/user.{format}/{username}" -> false
+    methodSecurityAnotations += "GET:/user.{format}/login" -> false
+    methodSecurityAnotations += "GET:/user.{format}/logout" -> false
 
   }
 
