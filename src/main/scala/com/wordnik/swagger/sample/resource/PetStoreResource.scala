@@ -74,14 +74,14 @@ trait PetStoreResource extends RestResourceUtil {
 
 @Path("/store.json")
 @Singleton
-@Api("/store")
+@Api(value="/store" , description = "Operations about store")
 @Produces(Array("application/json"))
 class PetStoreResourceJSON extends Help
   with PetStoreResource
 
 @Path("/store.xml")
 @Singleton
-@Api("/store")
+@Api(value="/store", description = "Operations about store")
 @Produces(Array("application/xml"))
 class PetStoreResourceXML extends Help
   with PetStoreResource
