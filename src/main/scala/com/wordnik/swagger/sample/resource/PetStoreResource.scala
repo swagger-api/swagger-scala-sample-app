@@ -1,21 +1,33 @@
+/**
+ *  Copyright 2011 Wordnik, Inc.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package com.wordnik.swagger.sample.resource
 
 import com.wordnik.swagger.core._
-import javax.ws.rs.core.Response
-import javax.ws.rs._
 import com.wordnik.swagger.sample.model.Order
 import com.wordnik.swagger.sample.data.StoreData
-import util.RestResourceUtil
-import com.sun.jersey.spi.resource.Singleton
+import com.wordnik.swagger.core.util.RestResourceUtil
 import com.wordnik.swagger.sample.exception.NotFoundException
 
-/**
- * User: ramesh
- * Date: 7/29/11
- * Time: 5:23 PM
- */
-trait PetStoreResource extends RestResourceUtil {
+import com.sun.jersey.spi.resource.Singleton
 
+import javax.ws.rs.core.Response
+import javax.ws.rs._
+
+trait PetStoreResource extends RestResourceUtil {
   var storeData = new StoreData
 
   @GET

@@ -1,30 +1,41 @@
+/**
+ *  Copyright 2011 Wordnik, Inc.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package com.wordnik.swagger.sample.model
 
-import java.util.List
-import java.util.ArrayList
-import javax.xml.bind.annotation.XmlRootElement._
-import javax.xml.bind.annotation.{XmlElement, XmlRootElement}
 import com.wordnik.swagger.core.ApiProperty
 import com.wordnik.swagger.core.ApiProperty._
 
+import java.util.List
+import java.util.ArrayList
+
+import javax.xml.bind.annotation.XmlRootElement._
+import javax.xml.bind.annotation.{XmlElement, XmlRootElement}
+
 /**
- * User: ramesh
  * Date: 7/29/11
  * Time: 5:15 PM
  */
 @XmlRootElement(name = "pet")
 class Pet() {
-
   private var id:Long = 0
-
   private var category:Category = null
-
   private var name:String = null
-
   private var photoUrls:List[String] = new ArrayList[String]()
-
   private var tags:List[Tag] = new ArrayList[Tag]()
-
   private var status:String = null
 
   @XmlElement(name="id")
