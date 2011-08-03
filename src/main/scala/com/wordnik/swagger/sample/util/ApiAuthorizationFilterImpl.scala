@@ -43,8 +43,8 @@ class ApiAuthorizationFilterImpl extends ApiAuthorizationFilter {
   var isFilterInitialized:Boolean = false
   var methodSecurityAnotations:Map[String, Boolean] =  Map[String, Boolean]()
   var classSecurityAnotations:Map[String, Boolean] =  Map[String, Boolean]()
-  var securekeyId = "sample-app-secure-key"
-  var unsecurekeyId = "sample-app-un-secure-key"
+  var securekeyId = "special-key"
+  var unsecurekeyId = "default-key"
 
   def authorize(apiPath: String, method:String, headers: HttpHeaders , uriInfo: UriInfo ): Boolean = {
      var apiKey = uriInfo.getQueryParameters.getFirst("api_key")
