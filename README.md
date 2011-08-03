@@ -3,7 +3,8 @@
 ## Overview
 This is a project to build a stand-alone server which implements the Swagger spec.  You can find out 
 more about both the spec and the framework at http://swagger.wordnik.com.  For more information 
-about Wordnik's APIs, please visit http://developer.wordnik.com.  
+about Wordnik's APIs, please visit http://developer.wordnik.com.  There is an online version of this
+server at http://petstore.swagger.wordnik.com/api/resources.json
 
 ### Prerequisites
 You need the following installed and available in your $PATH:
