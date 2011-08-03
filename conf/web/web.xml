@@ -29,7 +29,7 @@
         </init-param>
         <init-param>
             <param-name>swagger.api.basepath</param-name>
-            <param-value>url</param-value>
+            <param-value>http://localhost:8002/api</param-value>
         </init-param>
         <init-param>
             <param-name>swagger.security.filter</param-name>
