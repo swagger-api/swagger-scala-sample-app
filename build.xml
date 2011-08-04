@@ -135,6 +135,42 @@
 		</jar>
 	</target>
 
+	<target name="compile-java-lib" description="builds the module without artifact resolution or cleaning">
+		<delete quiet="true" file="build/${organization}-${artifact}-java-lib-*.${artifact.ext}" />
+		<mkdir dir="build" />
+		<mkdir dir="build/java-lib" />
+		<mkdir dir="build/java-lib/java" />
+
+		<scalac srcdir="sdk-libs/src/main/java" destdir="build/java-lib/java">
+			<classpath>
+				<fileset dir="lib">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="lib/ext">
+					<include name="*.jar" />
+				</fileset>
+				<path refid="scala.classpath" />
+			</classpath>
+			<include name="**/*.scala" />
+			<include name="**/*.java" />
+		</scalac>
+
+		<javac srcdir="sdk-libs/src/main/java" destdir="build/java-lib/java">
+			<classpath>
+				<fileset dir="lib">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="lib/ext">
+					<include name="*.jar" />
+				</fileset>
+				<pathelement location="build/java-lib/java" />
+			</classpath>
+		</javac>
+		<jar jarfile="build/${module}-java-lib-${version.identifier}.${artifact.ext}">
+			<fileset dir="build/java-lib/java" />
+		</jar>
+	</target>
+
 	<!-- cleans up the dist -->
 	<target name="dist.clean" description="cleans the distribution folder">
 		<delete quiet="true" dir="dist" />
