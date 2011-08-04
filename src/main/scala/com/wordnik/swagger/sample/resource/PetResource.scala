@@ -94,6 +94,7 @@ trait PetResource extends RestResourceUtil {
     responseClass = "com.wordnik.swagger.sample.model.Pet", mutiValueResponse = true)
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid tag value")))
+  @Deprecated
   def findPetsByTags(
     @ApiParam(value = "Tags to filter by", required = true,
       allowMultiple = true)@QueryParam("tags") tags: String) = {
