@@ -1,26 +1,27 @@
 {
+    "apiUrl":"http://localhost:8002/api/",
+
+    "apiKey":"special-key",
+
     "defaultServiceBaseClass":"Object",
 
-    "baseClassNames":{
-        "WordAPI":"Object",
-        "WordListAPI":"Object"
-    },
+    "defaultModelBaseClass":"Object",
 
-    "modelBaseClass":"Object",
+    "serviceBaseClasses":{},
 
     "defaultModelImports":["com.wordnik.swagger.sample.sdk.java.common.BaseObject"],
+
     "defaultServiceImports":["com.wordnik.swagger.sample.sdk.java.common.BaseObject"],
 
     "modelPackageName":"com.wordnik.swagger.sample.sdk.java.model",
+
     "apiPackageName":"com.wordnik.swagger.sample.sdk.java.api",
 
-    "apiUrl":"http://localhost:8002/api/",
-    "apiKey":"sample-app-secure-key",
-
     "ignoreMethods":["WordAPI.getWordFrequency","WordAPI.getAudio","WordAPI.getWordStats"],
+
     "ignoreModels":["wordStats"],
 
     "outputDirectory":"../swagger-sample-app/sdk-libs/src/main/java/com/wordnik/swagger/sample/sdk/java",
-    "apiServerRootLocation":"../swagger-sample-app/sdk-libs"
 
+    "libraryHome":"../swagger-sample-app/sdk-libs"
 }
