@@ -32,8 +32,8 @@ trait PetStoreResource extends RestResourceUtil {
 
   @GET
   @Path("/order/{orderId}")
-  @ApiOperation(value = "Find purchase order by id", notes = "For valid response try integer ids with value < 1000. " +
-    "Any thing above 1000 or non integers will generate API erros", responseClass = "com.wordnik.swagger.sample.model.Order")
+  @ApiOperation(value = "Find purchase order by id", notes = "For valid response try integer ids with value <= 5. " +
+    "Any thing above 5 or non integers will generate API erros", responseClass = "com.wordnik.swagger.sample.model.Order")
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid ID supplied"),
     new ApiError(code = 404, reason = "Order not found")))

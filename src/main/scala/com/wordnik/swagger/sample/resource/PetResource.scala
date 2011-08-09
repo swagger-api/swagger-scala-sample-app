@@ -37,7 +37,7 @@ trait PetResource extends RestResourceUtil {
   @GET
   @Path("/{petId}")
   @ApiOperation(value = "Find Pet by id", notes = "Returns a pet when id < 10. " +
-    "Id > 1000 or non integers will simulate API error conditions", responseClass = "com.wordnik.swagger.sample.model.Pet")
+    "Id > 10 or non integers will simulate API error conditions", responseClass = "com.wordnik.swagger.sample.model.Pet")
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid ID supplied"),
     new ApiError(code = 404, reason = "Pet not found")))
@@ -90,7 +90,7 @@ trait PetResource extends RestResourceUtil {
   @GET
   @Path("/findByTags")
   @ApiOperation(value = "Finds Pets by tags",
-    notes = "Muliple tags can be provided with comma seperated strings",
+    notes = "Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.",
     responseClass = "com.wordnik.swagger.sample.model.Pet", mutiValueResponse = true)
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid tag value")))

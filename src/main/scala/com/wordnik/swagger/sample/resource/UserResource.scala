@@ -78,7 +78,7 @@ trait UserResource extends RestResourceUtil {
     new ApiError(code = 400, reason = "Invalid username supplied"),
     new ApiError(code = 404, reason = "User not found")))
   def getUserByName(
-    @ApiParam(value = "name that need to be fetched", required = true)@PathParam("username") username: String) = {
+    @ApiParam(value = "name that need to be fetched. Use user1 for testing. ", required = true)@PathParam("username") username: String) = {
     var user = userData.findUserByName(username)
     if (null != user) {
       Response.ok.entity(user).build
