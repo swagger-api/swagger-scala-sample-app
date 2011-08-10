@@ -32,13 +32,13 @@ trait PetStoreResource extends RestResourceUtil {
 
   @GET
   @Path("/order/{orderId}")
-  @ApiOperation(value = "Find purchase order by id", notes = "For valid response try integer ids with value <= 5. " +
-    "Any thing above 5 or non integers will generate API erros", responseClass = "com.wordnik.swagger.sample.model.Order")
+  @ApiOperation(value = "Find purchase order by ID", notes = "For valid response try integer IDs with value <= 5. " +
+    "Anything above 5 or nonintegers will generate API errors", responseClass = "com.wordnik.swagger.sample.model.Order")
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid ID supplied"),
     new ApiError(code = 404, reason = "Order not found")))
   def getOrderById(
-      @ApiParam(value="ID of pet that need to be fetched",required=true)@PathParam("orderId") orderId: String) = {
+      @ApiParam(value="ID of pet that needs to be fetched",required=true)@PathParam("orderId") orderId: String) = {
       var order = storeData.findOrderById(getLong(0,10000, 0, orderId))
       if (null != order){
         Response.ok.entity(order).build
@@ -49,7 +49,7 @@ trait PetStoreResource extends RestResourceUtil {
 
   @POST
   @Path("/order")
-  @ApiOperation(value = "Place an order for pet", responseClass = "com.wordnik.swagger.sample.model.Order")
+  @ApiOperation(value = "Place an order for a pet", responseClass = "com.wordnik.swagger.sample.model.Order")
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid order")))
   def placeOrder(
@@ -60,13 +60,13 @@ trait PetStoreResource extends RestResourceUtil {
 
   @DELETE
   @Path("/order/{orderId}")
-  @ApiOperation(value = "Delete purchase order by id", notes = "For valid response try integer ids with value < 1000. " +
-    "Any thing above 1000 or non integers will generate API erros")
+  @ApiOperation(value = "Delete purchase order by ID", notes = "For valid response try integer IDs with value < 1000. " +
+    "Anything above 1000 or nonintegers will generate API errors")
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid ID supplied"),
     new ApiError(code = 404, reason = "Order not found")))
   def deleteOrder(
-      @ApiParam(value="ID of the order that need to be deleted",required=true)@PathParam("orderId") orderId: String) = {
+      @ApiParam(value="ID of the order that needs to be deleted",required=true)@PathParam("orderId") orderId: String) = {
       storeData.deleteOrder(getLong(0, 10000, 0, orderId))
       Response.ok.entity("").build
   }
