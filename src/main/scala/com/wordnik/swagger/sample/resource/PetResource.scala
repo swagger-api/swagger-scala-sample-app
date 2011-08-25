@@ -30,6 +30,7 @@ import com.sun.jersey.spi.resource.Singleton
 import javax.ws.rs.core.Response
 import javax.ws.rs._
 import java.lang.Exception
+import com.sun.jersey.api.JResponse
 
 trait PetResource extends RestResourceUtil {
   var petData = new PetData
@@ -84,7 +85,7 @@ trait PetResource extends RestResourceUtil {
     @ApiParam(value = "Status values that need to be considered for filter", required = true, defaultValue = "available",
       allowableValues = "available,pending,sold", allowMultiple = true)@QueryParam("status") status: String) = {
     var results = petData.findPetByStatus(status)
-    Response.ok.entity(results).build
+    JResponse.ok(results).build
   }
 
   @GET
@@ -99,7 +100,7 @@ trait PetResource extends RestResourceUtil {
     @ApiParam(value = "Tags to filter by", required = true,
       allowMultiple = true)@QueryParam("tags") tags: String) = {
     var results = petData.findPetByTags(tags)
-    Response.ok.entity(results).build
+    JResponse.ok(results).build
   }
 }
 
