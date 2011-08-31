@@ -78,7 +78,7 @@
 
 	<target name="server.start" description="starts the server with stop port enabled">
 		<delete quiet="true" file="dist/logs/wordnik.log" />
-		<java jar="dist/start.jar" fork="true" spawn="true" dir="dist">
+		<java jar="dist/start.jar" fork="true" dir="dist">
 			<jvmarg value="-Xrunjdwp:transport=dt_socket,address=8585,server=y,suspend=n" />
 			<sysproperty key="START" value="conf/start.config" />
 			<sysproperty key="STOP.PORT" value="8079" />

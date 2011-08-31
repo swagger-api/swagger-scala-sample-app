@@ -39,7 +39,7 @@ trait UserResource extends RestResourceUtil {
   var userData = new UserData
 
   @POST
-  @ApiOperation(value = "Create user", notes = "This can only be done the logged in user")
+  @ApiOperation(value = "Create user", notes = "This can only be done by the logged in user.")
   def createUser(
     @ApiParam(value = "Created user object", required = true) user: User) = {
     userData.addUser(user)
@@ -48,7 +48,7 @@ trait UserResource extends RestResourceUtil {
 
   @PUT
   @Path("/{username}")
-  @ApiOperation(value = "Updated user", notes = "This can only be done the logged in user")
+  @ApiOperation(value = "Updated user", notes = "This can only be done by the logged in user.")
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid username supplied"),
     new ApiError(code = 404, reason = "User not found")))
@@ -61,12 +61,12 @@ trait UserResource extends RestResourceUtil {
 
   @DELETE
   @Path("/{username}")
-  @ApiOperation(value = "Delete user", notes = "This can only be done the logged in user")
+  @ApiOperation(value = "Delete user", notes = "This can only be done by the logged in user.")
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid username supplied"),
     new ApiError(code = 404, reason = "User not found")))
   def deleteUser(
-    @ApiParam(value = "name that need to be deleted", required = true)@PathParam("username") username: String) = {
+    @ApiParam(value = "The name that needs to be deleted", required = true)@PathParam("username") username: String) = {
     userData.removeUser(username)
     Response.ok.entity("").build
   }
@@ -78,7 +78,7 @@ trait UserResource extends RestResourceUtil {
     new ApiError(code = 400, reason = "Invalid username supplied"),
     new ApiError(code = 404, reason = "User not found")))
   def getUserByName(
-    @ApiParam(value = "name that need to be fetched. Use user1 for testing. ", required = true)@PathParam("username") username: String) = {
+    @ApiParam(value = "The name that needs to be fetched. Use user1 for testing. ", required = true)@PathParam("username") username: String) = {
     var user = userData.findUserByName(username)
     if (null != user) {
       Response.ok.entity(user).build
@@ -89,12 +89,12 @@ trait UserResource extends RestResourceUtil {
 
   @GET
   @Path("/login")
-  @ApiOperation(value = "Login user into the system", responseClass = "String")
+  @ApiOperation(value = "Logs user into the system", responseClass = "String")
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid username and password combination")))
   def loginUser(
-    @ApiParam(value = "user name for login", required = true)@QueryParam("username") username: String,
-    @ApiParam(value = "password for login in clear text", required = true)@QueryParam("password") password: String) = {
+    @ApiParam(value = "The user name for login", required = true)@QueryParam("username") username: String,
+    @ApiParam(value = "The password for login in clear text", required = true)@QueryParam("password") password: String) = {
     Response.ok.entity("logged in user session:" + System.currentTimeMillis()).build
   }
 
