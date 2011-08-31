@@ -77,7 +77,7 @@ trait PetResource extends RestResourceUtil {
   @Path("/findByStatus")
   @ApiOperation(value = "Finds Pets by status",
     notes = "Multiple status values can be provided with comma seperated strings",
-    responseClass = "com.wordnik.swagger.sample.model.Pet", mutiValueResponse = true)
+    responseClass = "com.wordnik.swagger.sample.model.Pet", multiValueResponse = true)
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid status value")))
   def findPetsByStatus(
@@ -91,7 +91,7 @@ trait PetResource extends RestResourceUtil {
   @Path("/findByTags")
   @ApiOperation(value = "Finds Pets by tags",
     notes = "Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.",
-    responseClass = "com.wordnik.swagger.sample.model.Pet", mutiValueResponse = true)
+    responseClass = "com.wordnik.swagger.sample.model.Pet", multiValueResponse = true)
   @ApiErrors(Array(
     new ApiError(code = 400, reason = "Invalid tag value")))
   @Deprecated
