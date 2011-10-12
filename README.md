@@ -17,8 +17,6 @@ You need the following installed and available in your $PATH:
 
 <li>- Apachy ivy installed (from swagger-core)
 
-<li>- Swagger-core library deployed to your local ivy repo (see swagger-core readme)
-
 ### To build
 To build the stand-alone server, run this task:
 <pre>
