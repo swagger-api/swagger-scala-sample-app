@@ -12,7 +12,7 @@
 
     <dependencies>
         <!-- wordnik-->
-        <dependency org="com.wordnik" name="swagger-core" rev="1.0" conf="build->*"/>
+        <dependency org="com.wordnik" name="swagger-core" rev="1.1-SHAPSHOT.121026" conf="build->*"/>
 
         <!-- scala -->
         <dependency org="org.scala-lang" name="scala-library" rev="2.8.1" conf="build->default"/>
