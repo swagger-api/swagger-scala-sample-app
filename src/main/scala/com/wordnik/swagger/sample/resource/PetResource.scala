@@ -17,12 +17,12 @@
 package com.wordnik.swagger.sample.resource
 
 import com.wordnik.swagger.core._
+import com.wordnik.swagger.core.ApiError._
 import com.wordnik.swagger.core.ApiParam._
 import com.wordnik.swagger.core.ApiOperation._
 import com.wordnik.swagger.core.util.RestResourceUtil
 import com.wordnik.swagger.sample.data.{ PetData }
 import com.wordnik.swagger.sample.model.{ Pet }
-import com.wordnik.swagger.core.ApiError._
 import com.wordnik.swagger.sample.exception.NotFoundException
 
 import com.sun.jersey.spi.resource.Singleton
@@ -43,7 +43,7 @@ trait PetResource extends RestResourceUtil {
     new ApiError(code = 400, reason = "Invalid ID supplied"),
     new ApiError(code = 404, reason = "Pet not found")))
   def getPetById(
-    @ApiParam(value = "ID of pet that needs to be fetched", required = true)@PathParam("petId") petId: String) = {
+    @ApiParam(value = "ID of pet that needs to be fetched", required = true, allowableValues="range[0,10]")@PathParam("petId") petId: String) = {
     var pet = petData.getPetbyId(getLong(0, 100000, 0, petId))
     if (null != pet) {
       Response.ok.entity(pet).build
