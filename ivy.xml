@@ -31,7 +31,9 @@
         <dependency org="com.sun.jersey" name="jersey-core" rev="1.7" conf="build->default"/>
         <dependency org="com.sun.jersey" name="jersey-core" rev="1.7" conf="build->default"/>
 
-        <dependency org="org.slf4j" name="slf4j-api" rev="1.5.8" conf="build->default"/>
+        <dependency org="org.slf4j" name="slf4j-api" rev="1.6.3" conf="build->default"/>
+	<dependency org="org.slf4j" name="slf4j-ext" rev="1.6.3" conf="build->default"/>
+	<dependency org="org.slf4j" name="slf4j-jdk14" rev="1.6.3" conf="build->default"/>
 	<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.3" conf="build->default"/>
 		
         <!-- jetty -->
