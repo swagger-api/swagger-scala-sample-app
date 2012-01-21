@@ -9,11 +9,11 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.wordnik</groupId>
-	<artifactId>swagger-java-sample-app</artifactId>
+	<artifactId>swagger-scala-sample-app</artifactId>
 	<packaging>war</packaging>
 	<name>swagger-scala-sample-app</name>
 	<version>1.1-SNAPSHOT.120119</version>
-	<url>https://github.com/wordnik/swagger-core</url>
+	<url>https://github.com/wordnik/swagger-scala-sample-app</url>
 	<scm>
 		<connection>scm:git:git@github.com:wordnik/swagger-scala-sample-app.git</connection>
 		<developerConnection>scm:git:git@github.com:wordnik/swagger-scala-sample-app.git</developerConnection>
