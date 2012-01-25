@@ -34,6 +34,7 @@ class UserData {
       users += createUser(8, "user8", "first name 8", "last name 8", "email8@test.com", "123-456-7890", 2)
       users += createUser(9, "user9", "first name 9", "last name 9", "email9@test.com", "123-456-7890", 3)
       users += createUser(10, "user10", "first name 10", "last name 10", "email10@test.com", "123-456-7890", 1)
+      users += createUser(11, "user?10", "first name ?10", "last name ?10", "email101@test.com", "123-456-7890", 1)
 
     }
 

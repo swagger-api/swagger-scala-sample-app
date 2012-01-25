@@ -29,6 +29,8 @@ import com.sun.jersey.spi.resource.Singleton
 import javax.ws.rs.core.Response
 import javax.ws.rs._
 import util.RestResourceUtil
+import java.util.ArrayList
+
 /**
  * User: ramesh
  * Date: 7/29/11
@@ -86,6 +88,43 @@ trait UserResource extends RestResourceUtil {
       throw new NotFoundException(404, "User not found")
     }
   }
+
+  @POST
+  @Path("/usersWithArray")
+  @ApiOperation(value = "Get user list user ids", responseClass = "com.wordnik.swagger.sample.model.User", multiValueResponse = true)
+  @ApiErrors(value = Array(new ApiError(code = 400, reason = "Invalid username supplied"), new ApiError(code = 404, reason = "User not found"))) 
+  def getUserByNamesArray(@ApiParam(value = "The names that needs to be fetched. Use user1, user2 , user3 for testing. ", required = true) usernames: Array[String]): Response = {
+    var users: java.util.List[User] = new ArrayList[User]
+    for (name <- usernames) {
+      var user: User = userData.findUserByName(name)
+      users.add(user)
+    }
+    if (null != users) {
+      return Response.ok.entity(users).build
+    }
+    else {
+      throw new NotFoundException(404, "User not found")
+    }
+  }
+
+  @POST
+  @Path("/usersWithList")
+  @ApiOperation(value = "Get user list user ids", responseClass = "com.wordnik.swagger.sample.model.User", multiValueResponse = true)
+  @ApiErrors(value = Array(new ApiError(code = 400, reason = "Invalid username supplied"), new ApiError(code = 404, reason = "User not found")))
+  def getUserByNamesList(@ApiParam(value = "The names that needs to be fetched. Use user1, user2 , user3 for testing. ", required = true) usernames: java.util.List[String]): Response = {
+    var users: java.util.List[User] = new ArrayList[User]
+    import scala.collection.JavaConversions._
+    for (name <- usernames) {
+      var user: User = userData.findUserByName(name)
+      users.add(user)
+    }
+    if (null != users) {
+      return Response.ok.entity(users).build
+    }
+    else {
+      throw new NotFoundException(404, "User not found")
+    }
+  }  
 
   @GET
   @Path("/login")
